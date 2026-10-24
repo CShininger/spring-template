@@ -1,0 +1,22 @@
+---
+description: Spring MVC Web 接口的路径、状态码、校验和错误响应
+globs: src/main/java/**/*.java
+alwaysApply: false
+---
+
+# Web 接口
+
+- 控制器只负责参数绑定、校验和组装响应。业务放在 `@Service` 中，控制器不直接访问外部系统。
+- 路径使用版本前缀和复数名词，例如 `/api/v1/orders`。用 HTTP 方法表达动作，不要使用 `/getOrder`、`/deleteOrder` 这类路径。
+- 请求体加 `@Valid`。创建成功返回 `201` 和 `Location`，删除成功返回 `204`，查询成功返回 `200`。
+- 对外只返回 DTO，不序列化内部模型。
+- 错误响应统一为 `code`、`message`、`details`，由 `@RestControllerAdvice` 输出。校验失败返回 `400`，资源不存在返回 `404`。响应中不要包含堆栈。
+
+```java
+@PostMapping
+public ResponseEntity<OrderResponse> create(@Valid @RequestBody CreateOrderRequest request) {
+	OrderResponse body = orderService.create(request);
+	URI location = URI.create("/api/v1/orders/" + body.id());
+	return ResponseEntity.created(location).body(body);
+}
+```

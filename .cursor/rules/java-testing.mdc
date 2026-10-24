@@ -1,0 +1,12 @@
+---
+description: Web 接口与服务层的测试分层
+globs: src/test/**/*.java
+alwaysApply: false
+---
+
+# 测试
+
+- 使用 JUnit 5。服务层写普通单元测试，不启动 Spring 容器。
+- 控制器使用 `@WebMvcTest` 和 `MockMvc`，断言状态码、响应体，以及校验失败时的 `400`。
+- 只有需要完整应用容器时才使用 `@SpringBootTest`。
+- 测试方法名写清场景和期望，例如 `create_invalidQuantity_returns400`。

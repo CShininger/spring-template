@@ -1,0 +1,11 @@
+---
+description: Maven 依赖版本由 Spring Boot 父 POM 管理
+globs: pom.xml
+alwaysApply: false
+---
+
+# Maven
+
+- 依赖版本由 `spring-boot-starter-parent` 管理。Spring Boot starter 不再单独写 `<version>`。
+- 测试依赖使用 `test` scope。仅运行时需要且可有可无的依赖保持 `optional`。
+- 新增依赖前先确认 Spring Boot 4 的 starter 名称。Web 使用 `spring-boot-starter-webmvc`。

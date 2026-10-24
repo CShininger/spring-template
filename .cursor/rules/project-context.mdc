@@ -1,0 +1,14 @@
+---
+description: 本仓库的技术栈、目录约定和改动边界
+alwaysApply: true
+---
+
+# 项目上下文
+
+- Spring Boot 4.0.9，Java 17，构建使用 Maven Wrapper。Web 用 `spring-boot-starter-webmvc`，校验用 `spring-boot-starter-validation`，已引入 Actuator。
+- 根包是 `com.swanqing.backend`。启动类留在根包，业务按功能放到其子包。
+- 当前没有持久层、安全框架和 Lombok。未明确要求时，不要新增依赖，也不要引入 JPA、Security 或 Lombok。
+- Java 使用 Tab 缩进、行宽 120，格式以 `.vscode/eclipse-java-formatter.xml` 为准。
+- 配置写在 `src/main/resources/application.properties`。密钥使用环境变量，不提交到仓库。
+- 只修改完成当前任务所需的代码，不新增说明文档。
+- 用户允许执行命令时，用 `./mvnw -q test` 验证。

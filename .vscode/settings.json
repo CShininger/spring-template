@@ -1,0 +1,14 @@
+{
+  "editor.formatOnSave": true,
+  "[xml]": {
+    "editor.formatOnSave": false
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false
+  },
+  "java.format.settings.url": ".vscode/eclipse-java-formatter.xml",
+  "java.format.settings.profile": "spring-template",
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

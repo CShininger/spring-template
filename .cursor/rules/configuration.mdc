@@ -1,0 +1,11 @@
+---
+description: application 配置、环境变量和 Actuator 暴露范围
+globs: src/main/resources/**/*.properties, src/main/resources/**/*.yml, src/main/resources/**/*.yaml
+alwaysApply: false
+---
+
+# 配置
+
+- 继续使用 `application.properties`。环境差异放到 `application-<profile>.properties`，本地密钥不要提交。
+- 成组配置使用 `@ConfigurationProperties`，前缀使用 `backend`，并提供默认值。
+- Actuator 只暴露运维需要的端点。健康检查以外的端点不要默认对公网开放。

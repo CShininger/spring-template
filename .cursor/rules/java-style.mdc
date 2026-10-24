@@ -1,0 +1,23 @@
+---
+description: Java 编码约定，包括构造注入、日志、DTO 和异常
+globs: src/main/java/**/*.java, src/test/java/**/*.java
+alwaysApply: false
+---
+
+# Java 约定
+
+- 依赖通过构造器注入，依赖字段保持 `final`。不要在字段上使用 `@Autowired`。
+- 请求体、响应体和不可变值对象优先使用 `record`。
+- 日志使用 SLF4J，参数用占位符，异常放在最后一个参数。不要使用 `System.out`，也不要拼接字符串后再打日志。
+- 业务失败抛出语义明确的运行时异常，由统一异常处理转换成 HTTP 响应。不要吞掉异常。
+- 跨功能的公共代码放在 `com.swanqing.backend.common`，单个功能放在 `com.swanqing.backend.<feature>`。
+
+```java
+private static final Logger log = LoggerFactory.getLogger(OrderService.class);
+
+public OrderService(OrderGateway orderGateway) {
+	this.orderGateway = orderGateway;
+}
+
+log.info("创建订单 userId={}", userId);
+```
